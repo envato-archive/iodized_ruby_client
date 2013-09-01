@@ -1,4 +1,4 @@
-#YodaDo RC
+#YodaDo
 ###Control, you have.
 
 ## Usage
