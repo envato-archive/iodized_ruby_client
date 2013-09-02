@@ -5,13 +5,7 @@ module Yodado
   class Client
 
     def do?(feature, state)
-      response = RestClient.get(
-        Yodado.config.url, 
-        {
-          :feature => feature, 
-          :state => state.merge(request_state)
-        }
-      )
+      response = RestClient.post(url(feature), state.merge(request_state))
     end
 
   private
@@ -30,6 +24,10 @@ module Yodado
 
     def request
       Thread.current[:yodado_request]
+    end
+
+    def url(feature)
+      "#{Yodado.config.url}/#{feature}"
     end
 
     def rack_available?
