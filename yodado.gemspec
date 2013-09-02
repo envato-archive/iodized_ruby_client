@@ -6,7 +6,7 @@ require 'yodado/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "yodado"
-  spec.version       = YodaDo::VERSION
+  spec.version       = Yodado::VERSION
   spec.authors       = ["Julian Doherty", "Anthony Sellitti"]
   spec.email         = ["julian.doherty@envato.com", "anthony.sellitti@envato.com"]
   spec.description   = %q{“Control, you have.”}
@@ -25,4 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-debugger"
   spec.add_development_dependency "pry-doc"
   spec.add_development_dependency "rake"
+
+  spec.add_dependency "rest-client"
 end

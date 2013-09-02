@@ -2,6 +2,7 @@
 require 'yodado/version'
 require 'yodado/client'
 require 'yodado/middleware'
+require 'yodado/config'
 
 module Yodado
 
@@ -20,6 +21,7 @@ module Yodado
   def self.client
     @client ||= Yodado::Client.new
   end
+  private_class_method :client
 
   def self.config
     @config ||= Yodado::Config.new
