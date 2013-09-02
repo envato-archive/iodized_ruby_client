@@ -1,11 +1,19 @@
 #encoding: utf-8
 require 'rest_client'
+require 'json'
 
 module Yodado
   class Client
 
     def do?(feature, state)
       response = RestClient.post(url(feature), state.merge(request_state))
+
+      begin
+        parsed = JSON.parse(response)
+        parsed['status'] || false
+      rescue
+        false
+      end
     end
 
   private
