@@ -14,8 +14,8 @@ module Yodado
     raise NoMethodError, 'Do or do not; there is no try.'
   end
 
-  def self.force(feature)
-    client.force(feature)
+  def self.force(feature, state)
+    client.force(feature, state)
   end
 
   def self.client

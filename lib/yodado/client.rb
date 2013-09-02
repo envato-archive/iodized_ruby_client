@@ -6,9 +6,8 @@ module Yodado
   class Client
 
     def do?(feature, state)
-      response = RestClient.post(url(feature), state.merge(request_state))
-
       begin
+        response = RestClient.post(url(feature), state.merge(request_state))
         parsed = JSON.parse(response)
         parsed['status'] || false
       rescue
@@ -16,8 +15,12 @@ module Yodado
       end
     end
 
-  private
+    def force(feature, state)
+      do?(feature, state.merge({:forced => true})
+      true
+    end
 
+  private
     def request_state
       state = {}
       if rack_available?
