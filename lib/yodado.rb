@@ -26,4 +26,12 @@ module Yodado
   def self.config
     @config ||= Yodado::Config.new
   end
+
+  if defined? Rails
+    class YodadoRailtie < Rails::Railtie
+      initializer "yodado_railtie.configure_rails_initialization" do |app|
+        app.middleware.use Yodado::Middleware
+      end
+    end
+  end
 end

@@ -16,7 +16,7 @@ module Yodado
     end
 
     def force(feature, state)
-      do?(feature, state.merge({:forced => true})
+      do?(feature, state.merge({:forced => true}))
       true
     end
 
@@ -27,7 +27,7 @@ module Yodado
         state = state.merge({
           :session_id => request.session_options[:id],
           :host_name  => request.host,
-          :client_ip  => request.remote_ip,
+          :client_ip  => request.ip,
         })
       end
       state
