@@ -1,4 +1,4 @@
-#YodaDo
+#Yodado
 ###Control, you have.
 
 ## Usage
