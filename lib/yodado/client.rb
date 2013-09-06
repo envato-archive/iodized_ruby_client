@@ -7,7 +7,7 @@ module Yodado
 
     def do?(feature, state)
       begin
-        response = RestClient.post(url(feature), state.merge(request_state))
+        response = RestClient.get(url(feature), :params => state.merge(request_state))
         parsed = JSON.parse(response)
         parsed['status'] || false
       rescue
