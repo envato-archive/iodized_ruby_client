@@ -5,7 +5,7 @@ module Yodado
     attr_accessor :url
 
     def initialize
-      @url = 'http://dagoba.system:12345'
+      @url = 'http://localhost:8080'
     end
   end
 end

@@ -38,7 +38,7 @@ module Yodado
     end
 
     def url(feature)
-      "#{Yodado.config.url}/#{feature}"
+      "#{Yodado.config.url}/feature/#{feature}"
     end
 
     def rack_available?
