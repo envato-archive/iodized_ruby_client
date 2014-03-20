@@ -8,15 +8,20 @@ require 'yodado/version'
 module Yodado
 
   def self.do?(feature, state)
-    client.do?(feature, state)
+    feature_set = if Thread.current[:yodado_feature_set]
+                    Thread.current[:yodado_feature_set]
+                  else
+                    Thread.current[:yodado_feature_set] = client.feature_set(state)
+                  end
+    feature_set[feature.to_s] || false
+  end
+
+  def self.reset_feature_set!
+    Thread.current[:yodado_feature_set] = nil
   end
 
   def self.try?(feature, state)
     raise NoMethodError, 'Do or do not; there is no try.'
-  end
-
-  def self.force(feature, state)
-    client.force(feature, state)
   end
 
   def self.client
