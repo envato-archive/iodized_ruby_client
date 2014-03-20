@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Do, or do not. There is no try</h2>
+    <% if params[:username] %>
+      <p>I sense <%= params[:username]%>'s presence...</p>
+    <% end %>
+
+    <% if @use_the_force %>
+    <h2><strong>strong with the force you are...</strong></h2>
+    <% else %>
+    <h2><em>weak with the force you are...</em></h2>
+    <% end %>
+    <br/>
+    <img src="/yodado_<%= @use_the_force %>.jpg" width="470">
+  </body>
+</html>
