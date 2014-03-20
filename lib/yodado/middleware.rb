@@ -14,6 +14,7 @@ module Yodado
         @app.call(env)
       ensure
         Thread.current[:yoadado_request] = nil
+        Thread.current[:yodado_feature_set] = nil
       end
     end
   end
