@@ -1,8 +1,9 @@
 #encoding: utf-8
-require 'yodado/version'
 require 'yodado/client'
-require 'yodado/middleware'
 require 'yodado/config'
+require 'yodado/features'
+require 'yodado/middleware'
+require 'yodado/version'
 
 module Yodado
 
