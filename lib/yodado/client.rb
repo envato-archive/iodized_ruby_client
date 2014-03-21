@@ -17,8 +17,13 @@ module Yodado
     end
 
     def feature_set(state)
-      state = state.merge(request_state)
-      thrift_client.feature_set(state)
+      retries = 5
+      begin
+        thrift_client.feature_set(state.merge(request_state))
+      rescue Thrift::TransportException => e
+        puts e.inspect
+        retry if (retries -= 1) > 0
+      end
     end
 
     private
