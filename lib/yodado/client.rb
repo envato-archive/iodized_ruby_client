@@ -1,33 +1,53 @@
 #encoding: utf-8
-require 'rest_client'
-require 'json'
 
 module Yodado
   class Client
 
-    def do?(feature, state)
+    def initialize(host='localhost', port=12345)
+      @host = host
+      @port = port
+    end
+
+    def close
+      @transport.close
+    end
+
+    def ping()
+      thrift_client.ping
+    end
+
+    def feature_set(state)
+      retries = 5
       begin
-        response = RestClient.get(url(feature), :params => state.merge(request_state))
-        parsed = JSON.parse(response)
-        parsed['status'] || false
-      rescue
-        false
+        thrift_client.feature_set(state.merge(request_state))
+      rescue Thrift::TransportException => e
+        puts e.inspect
+        retry if (retries -= 1) > 0
       end
     end
 
-    def force(feature, state)
-      do?(feature, state.merge({:forced => true}))
-      true
+    private
+    def thrift_client
+      if @client && @transport && @transport.open?
+        @client
+      else
+        @transport = Thrift::BufferedTransport.new(Thrift::Socket.new(@host, @port))
+        @protocol = Thrift::BinaryProtocol.new(@transport)
+        @client = Yodado::Features::Client.new(@protocol)
+
+        @transport.open
+
+        @client
+      end
     end
 
-  private
     def request_state
       state = {}
-      if rack_available?
+      if rack_available? && !request.nil?
         state = state.merge({
-          :session_id => request.session_options[:id],
-          :host_name  => request.host,
-          :client_ip  => request.ip,
+          "session_id" => request.session_options[:id] || "",
+          "host_name"  => request.host || "",
+          "client_ip"  => request.ip || "",
         })
       end
       state
@@ -35,10 +55,6 @@ module Yodado
 
     def request
       Thread.current[:yodado_request]
-    end
-
-    def url(feature)
-      "#{Yodado.config.url}/feature/#{feature}"
     end
 
     def rack_available?
