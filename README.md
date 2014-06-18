@@ -1,14 +1,11 @@
-#Yodado
-###Control, you have.
+# Iodized
+### Iodine rich feature toggling. Lack of iodine can lead to development delays, and stunted growth.
+
+Ruby client for [iodized](https://github.com/envato/iodized)
 
 ## Usage
 
-DOTO
+TODO
 
-## Contributing
+see examples for now
 
-1. Fork you must
-2. Feature branch you must create (`git checkout -b my-new-feature`)
-3. Your changes you commit (`git commit -am 'Add some feature'`)
-4. The branch you push (`git push origin my-new-feature`)
-5. Pull Request you must make

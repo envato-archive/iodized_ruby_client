@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-module Yodado
+module Iodized
   class Client
 
     def initialize(host='localhost', port=12345)
@@ -33,7 +33,7 @@ module Yodado
       else
         @transport = Thrift::BufferedTransport.new(Thrift::Socket.new(@host, @port))
         @protocol = Thrift::BinaryProtocol.new(@transport)
-        @client = Yodado::Features::Client.new(@protocol)
+        @client = Iodized::Features::Client.new(@protocol)
 
         @transport.open
 
@@ -54,7 +54,7 @@ module Yodado
     end
 
     def request
-      Thread.current[:yodado_request]
+      Thread.current[:iodized_request]
     end
 
     def rack_available?

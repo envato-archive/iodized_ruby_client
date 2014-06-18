@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-module Yodado
+module Iodized
   class Config
     attr_accessor :url
 

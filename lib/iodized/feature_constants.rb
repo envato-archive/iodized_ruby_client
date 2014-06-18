@@ -7,5 +7,5 @@
 require 'thrift'
 require_relative 'feature_types'
 
-module Yodado
+module Iodized
 end

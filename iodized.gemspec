@@ -2,16 +2,16 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'yodado/version'
+require 'iodized/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "yodado"
-  spec.version       = Yodado::VERSION
-  spec.authors       = ["Julian Doherty", "Anthony Sellitti"]
-  spec.email         = ["julian.doherty@envato.com", "anthony.sellitti@envato.com"]
-  spec.description   = %q{“Control, you have.”}
-  spec.summary       = %q{Yodado Ruby Client}
-  spec.homepage      = "https://github.com/envato/yodado_ruby_client"
+  spec.name          = "iodized"
+  spec.version       = Iodized::VERSION
+  spec.authors       = ["Julian Doherty"]
+  spec.email         = ["julian@envato.com"]
+  spec.description   = %q{Iodine rich feature toggling. Lack of iodine can lead to development delays, and stunted growth.}
+  spec.summary       = %q{iodized Ruby Client}
+  spec.homepage      = "https://github.com/envato/iodized_ruby_client"
   spec.license       = "Copyright Envato - All rights reserved."
 
   spec.files         = `git ls-files`.split($/)

@@ -7,7 +7,7 @@
 require 'thrift'
 require_relative 'feature_types'
 
-module Yodado
+module Iodized
   module Features
     class Client
       include ::Thrift::Client

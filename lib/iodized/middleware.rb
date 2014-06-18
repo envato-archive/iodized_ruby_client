@@ -1,6 +1,6 @@
 #encoding utf-8
 
-module Yodado
+module Iodized
   class Middleware
 
     def initialize(app)
@@ -9,12 +9,12 @@ module Yodado
 
     def call(env)
       req = Rack::Request.new(env)
-      Thread.current[:yodado_request] = req
+      Thread.current[:iodized_request] = req
       begin
         @app.call(env)
       ensure
         Thread.current[:yoadado_request] = nil
-        Thread.current[:yodado_feature_set] = nil
+        Thread.current[:iodized_feature_set] = nil
       end
     end
   end

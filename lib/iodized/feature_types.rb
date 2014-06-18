@@ -6,5 +6,5 @@
 
 require 'thrift'
 
-module Yodado
+module Iodized
 end

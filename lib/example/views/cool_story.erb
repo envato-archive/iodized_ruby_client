@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>COOL STORY, <%= @joe ? "JOE!" : "BRO!" %></h2>
+    <% if @joe %>
+      <img src="/cool_story_joe.jpg" width="500">
+    <% else %>
+      <img src="/cool_story_bro.jpg" width="500">
+    <% end %>
+
+    <h2>all the features:</h2>
+  <pre><%= JSON.pretty_generate @features %></pre>
+  </body>
+</html>
