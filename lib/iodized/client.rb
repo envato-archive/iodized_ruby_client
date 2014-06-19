@@ -21,8 +21,11 @@ module Iodized
       begin
         thrift_client.feature_set(state.merge(request_state))
       rescue Thrift::TransportException => e
-        puts e.inspect
-        retry if (retries -= 1) > 0
+        if (retries -= 1) > 0
+          retry
+        else
+          raise e
+        end
       end
     end
 
