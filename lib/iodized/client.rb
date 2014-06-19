@@ -3,7 +3,7 @@
 module Iodized
   class Client
 
-    def initialize(host='localhost', port=12345)
+    def initialize(host='localhost', port=5353)
       @host = host
       @port = port
     end
