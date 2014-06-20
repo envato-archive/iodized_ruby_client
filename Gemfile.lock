@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    iodized (0.0.1)
+    iodized (0.0.2)
       rack
       thin
       thrift (~> 0.9.1)
