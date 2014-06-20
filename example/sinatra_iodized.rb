@@ -2,7 +2,7 @@ require 'sinatra'
 require 'iodized'
 require 'json'
 
-Iodized.client = Iodized::Client.new('localhost', 5353)
+Iodized.client = Iodized::Client.new('0.0.0.0', 5353)
 use Iodized::Middleware
 
 get '/cool_story' do
