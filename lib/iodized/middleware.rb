@@ -13,7 +13,7 @@ module Iodized
       begin
         @app.call(env)
       ensure
-        Thread.current[:yoadado_request] = nil
+        Thread.current[:iodized_request] = nil
         Thread.current[:iodized_feature_set] = nil
       end
     end
