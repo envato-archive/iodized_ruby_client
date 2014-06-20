@@ -1,6 +1,5 @@
 #encoding: utf-8
 require 'iodized/client'
-require 'iodized/config'
 require 'iodized/features'
 require 'iodized/middleware'
 require 'iodized/version'
@@ -28,8 +27,8 @@ module Iodized
     @client = client
   end
 
-  def self.config
-    @config ||= Iodized::Config.new
+  def self.config(host, port)
+    self.client = Iodized::Client.new(host, port)
   end
 
   if defined? Rails
