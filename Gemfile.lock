@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    iodized (0.0.2)
+    iodized (0.0.3)
       thrift (~> 0.9.1)
 
 GEM
