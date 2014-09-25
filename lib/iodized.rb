@@ -6,13 +6,12 @@ require 'iodized/version'
 
 module Iodized
 
-  def self.do?(feature, state)
-    feature_set = if Thread.current[:iodized_feature_set]
-                    Thread.current[:iodized_feature_set]
-                  else
-                    Thread.current[:iodized_feature_set] = client.feature_set(state)
-                  end
-    feature_set[feature.to_s] || false
+  def self.on?(feature, state)
+    feature_set(state)[feature.to_s] || false
+  end
+
+  def self.feature_set(state)
+    Thread.current[:iodized_feature_set] ||= client.feature_set(state)
   end
 
   def self.reset_feature_set!
