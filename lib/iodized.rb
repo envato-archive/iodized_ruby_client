@@ -22,6 +22,14 @@ module Iodized
     @client ||= Iodized::Client.new
   end
 
+  def self.override_for_session(feature, feature_value)
+    client.override_for_session(feature, feature_value)
+  end
+
+  def self.overriden_for_session?(feature)
+    client.overriden_for_session?(feature)
+  end
+
   def self.client=(client)
     @client = client
   end
