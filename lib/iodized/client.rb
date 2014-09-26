@@ -19,7 +19,14 @@ module Iodized
     def feature_set(state)
       retries = 5
       begin
-        thrift_client.feature_set(state.merge(request_state))
+        features = thrift_client.feature_set(state.merge(request_state))
+        if req = Thread.current[:iodized_request]
+          # handle session feature value overrides
+          Hash[features.map { |feature,value| [feature, req.session[feature].nil? ? value : req.session[feature]] }]
+        else
+          features
+        end
+
       rescue Thrift::TransportException => e
         if (retries -= 1) > 0
           retry
@@ -29,7 +36,28 @@ module Iodized
       end
     end
 
+    def override_for_session(feature, feature_value)
+      session[feature] = feature_value
+    end
+
+    def overriden_for_session?(feature)
+      session[feature]
+    end
+
     private
+
+    def session
+      if defined? Rails
+        if req = Thread.current[:iodized_request]
+          req.session
+        else
+          raise "No request available. Unable to override session"
+        end
+      else
+        raise "This feature requires Rails sessions to operate"
+      end
+    end
+
     def thrift_client
       if @client && @transport && @transport.open?
         @client
